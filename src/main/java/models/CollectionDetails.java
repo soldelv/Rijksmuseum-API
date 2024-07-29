@@ -23,8 +23,6 @@ public class CollectionDetails {
         CollectionResponse.Image webImage;
         CollectionResponse.Image headerImage;
         List<String> productionPlaces;
-
-        // ** /
         String priref;
         String language;
         List<Color> colors;
@@ -48,7 +46,7 @@ public class CollectionDetails {
     }
 
     @Data
-    public static class Color{
+    public static class Color {
         int percentage;
         String hex;
     }

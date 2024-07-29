@@ -3,7 +3,6 @@ package api;
 import models.CollectionDetails;
 import models.CollectionImage;
 import models.CollectionResponse;
-import models.ObjectDetails;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

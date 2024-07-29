@@ -8,8 +8,11 @@ import io.cucumber.java.en.When;
 import models.CollectionDetails;
 import models.CollectionImage;
 import models.CollectionResponse;
+import okhttp3.ResponseBody;
 import org.junit.Assert;
 import retrofit2.Response;
+
+import java.io.IOException;
 
 public class RijksmuseumApiSteps {
 
@@ -25,12 +28,22 @@ public class RijksmuseumApiSteps {
     public static Response<CollectionImage> collectionImage;
     public static String objectNumber;
     public static int statusCode;
+    public static ResponseBody errorBody;
 
     @Given("GET all collections")
     public void getAllCollections() {
         collectionResponse = api.getAllCollections();
         Assert.assertNotNull("Collections response is null", collectionResponse);
         statusCode = collectionResponse.code();
+        errorBody = api.getErrorBody(collectionResponse);
+    }
+
+    @Given("GET all collections with invalid API key")
+    public void getAllCollectionsWithInvalidAPIKey() {
+        collectionResponse = api.getAllCollectionsWithInvalidApiKey();
+        Assert.assertNotNull("Collections response is null", collectionResponse);
+        statusCode = collectionResponse.code();
+        errorBody = api.getErrorBody(collectionResponse);
     }
 
     @Then("the api response  status code should be {int}")
@@ -57,10 +70,10 @@ public class RijksmuseumApiSteps {
     @And("GET the collection details from the collection")
     public void getTheCollectionDetailsFromTheCollection() {
         collectionDetailResponse = api.getCollectionDetails(objectNumber);
-        System.out.println("collectionDetailResponse: " + collectionDetailResponse);
-        System.out.println("collectionDetailResponse Body: " + collectionDetailResponse.body());
         Assert.assertNotNull("Collection detail response is null", collectionDetailResponse);
+        System.out.println("collectionDetailResponse: " + collectionDetailResponse.body());
         statusCode = collectionDetailResponse.code();
+        errorBody = api.getErrorBody(collectionDetailResponse);
     }
 
     @And("response body for collection details is correct")
@@ -79,6 +92,7 @@ public class RijksmuseumApiSteps {
         System.out.println("collectionImage Body: " + collectionImage.body());
         Assert.assertNotNull("Collection image response is null", collectionImage);
         statusCode = collectionImage.code();
+        errorBody = api.getErrorBody(collectionImage);
     }
 
     @And("response body for collection image is correct")
@@ -89,5 +103,17 @@ public class RijksmuseumApiSteps {
         Assert.assertFalse("Object Image id is empty", collectionImage.body().getLevels().isEmpty());
         Assert.assertNotNull("Object Image name is null", collectionImage.body().getLevels().get(0).getName());
         Assert.assertFalse("Object Image title is empty", collectionImage.body().getLevels().get(0).getTiles().isEmpty());
+    }
+
+    @Given("set an invalid object number")
+    public void setAnInvalidObjectNumber() {
+        objectNumber = "null";
+        System.out.println("Invalid object number: " + objectNumber);
+    }
+
+    @And("the response should contain an error message {}")
+    public void theResponseShouldContainAnErrorMessageInvalidKey(String message) throws IOException {
+        System.out.println("Error message: " + errorBody.string());
+        Assert.assertTrue("Error message doesn't match", errorBody.string().contains(message));
     }
 }
