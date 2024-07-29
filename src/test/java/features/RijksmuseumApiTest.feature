@@ -7,13 +7,13 @@ Feature: API Testing | Rijksmuseum API
     * the api response  status code should be 200
     * response body for collections is correct
 
-  @test-06
+  @test-02
   Scenario: Retrieve collections with invalid API key
     * GET all collections with invalid API key
     * the api response  status code should be 401
-    * the response should contain an error message Invalid key
+    * the response should contain an error message "Invalid key"
 
-  @test-02
+  @test-03
   Scenario: Retrieve collection details
     * GET all collections
     * retrieve one collection from the list
@@ -21,13 +21,14 @@ Feature: API Testing | Rijksmuseum API
     * the api response  status code should be 200
     * response body for collection details is correct
 
-  @test-03
+  @test-04
   Scenario: Try to retrieve collection details for an invalid object number
     * set an invalid object number
-    * GET the collection details from the collection
-    * the api response  status code should be 403
+    * GET the collection details from the collection with invalid API key
+    * the api response  status code should be 401
+    * the response should contain an error message Invalid key
 
-  @test-04
+  @test-05
   Scenario: Retrieve collection image
     * GET all collections
     * retrieve one collection from the list
@@ -35,7 +36,7 @@ Feature: API Testing | Rijksmuseum API
     * the api response  status code should be 200
     * response body for collection image is correct
 
-  @test-05
+  @test-06
   Scenario:Try to retrieve collection image for an invalid object number
     * set an invalid object number
     * GET the collection image from the collection retrieved

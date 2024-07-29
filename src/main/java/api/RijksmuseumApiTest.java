@@ -27,7 +27,7 @@ public class RijksmuseumApiTest {
 
     public Response<CollectionResponse> getAllCollectionsWithInvalidApiKey() {
         try {
-            return client().getAllCollections("API_KEY", "json").execute();
+            return client().getAllCollections("INVALID", "json").execute();
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
             return null;
@@ -37,6 +37,15 @@ public class RijksmuseumApiTest {
     public Response<CollectionDetails> getCollectionDetails(String collectionId) {
         try {
             return client().getCollectionDetails(collectionId, API_KEY).execute();
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public Response<CollectionDetails> getCollectionDetailsWithInvalidApiKey(String collectionId) {
+        try {
+            return client().getCollectionDetails(collectionId, "API_KEY").execute();
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
             return null;

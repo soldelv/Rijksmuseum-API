@@ -1,0 +1,45 @@
+# .github/workflows/ci.yml
+name: API Testing CI with Java, Maven and Retrofit2
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '20'
+          distribution: 'openjdk'
+
+      - name: Build with Maven
+        run: mvn clean install
+
+      - name: Run tests
+        run: mvn test
+
+      - name: Upload Cucumber reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: cucumber-reports
+          path: target/cucumber-reports
+
+      - name: Run JaCoCo code coverage
+        run: mvn jacoco:report
+
+      - name: Upload code coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: target/site/jacoco

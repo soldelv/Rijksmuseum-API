@@ -73,30 +73,38 @@
       <scope>test</scope>
       <version>${cucumber.version}</version>
     </dependency>
+
+<!--    <dependency>-->
+<!--      <groupId>io.cucumber</groupId>-->
+<!--      <artifactId>cucumber-jvm</artifactId>-->
+<!--      <type>pom</type>-->
+<!--      <version>${cucumber.version}</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>io.cucumber</groupId>-->
+<!--      <artifactId>cucumber-core</artifactId>-->
+<!--      <scope>compile</scope>-->
+<!--      <version>${cucumber.version}</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>info.cukes</groupId>-->
+<!--      <artifactId>cucumber-junit</artifactId>-->
+<!--      <version>1.2.5</version>-->
+<!--    </dependency>-->
+
     <dependency>
       <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-jvm</artifactId>
-      <type>pom</type>
-      <version>${cucumber.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-core</artifactId>
-      <scope>compile</scope>
-      <version>${cucumber.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>info.cukes</groupId>
       <artifactId>cucumber-junit</artifactId>
-      <version>1.2.5</version>
+      <scope>test</scope>
+      <version>7.0.0</version>
     </dependency>
 
     <!-- JUnit -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>5.9.3</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.junit.jupiter</groupId>-->
+<!--      <artifactId>junit-jupiter</artifactId>-->
+<!--      <version>5.9.3</version>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>junit</groupId>
@@ -104,12 +112,7 @@
       <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-junit</artifactId>
-      <scope>test</scope>
-      <version>7.0.0</version>
-    </dependency>
+
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>gherkin</artifactId>
@@ -120,55 +123,55 @@
       <artifactId>gherkin-jvm-deps</artifactId>
       <version>1.0.4</version>
     </dependency>
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-junit-platform-engine</artifactId>
-      <version>${cucumber.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-console</artifactId>
-      <version>1.8.2</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-suite</artifactId>
-      <version>1.8.2</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-commons</artifactId>
-      <version>1.7.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.junit</groupId>
-      <artifactId>junit-bom</artifactId>
-      <version>5.7.0-M1</version>
-      <type>pom</type>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>io.cucumber</groupId>-->
+<!--      <artifactId>cucumber-junit-platform-engine</artifactId>-->
+<!--      <version>${cucumber.version}</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.junit.platform</groupId>-->
+<!--      <artifactId>junit-platform-console</artifactId>-->
+<!--      <version>1.8.2</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.junit.platform</groupId>-->
+<!--      <artifactId>junit-platform-suite</artifactId>-->
+<!--      <version>1.8.2</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.junit.platform</groupId>-->
+<!--      <artifactId>junit-platform-commons</artifactId>-->
+<!--      <version>1.7.0</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.junit</groupId>-->
+<!--      <artifactId>junit-bom</artifactId>-->
+<!--      <version>5.7.0-M1</version>-->
+<!--      <type>pom</type>-->
+<!--    </dependency>-->
 
     <!-- Cucumber reporting dependency -->
-    <dependency>
-      <groupId>net.masterthought</groupId>
-      <artifactId>cucumber-reporting</artifactId>
-      <version>5.7.5</version>
-      <scope>test</scope>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>net.masterthought</groupId>-->
+<!--      <artifactId>cucumber-reporting</artifactId>-->
+<!--      <version>5.7.5</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
 
     <!-- Cucumber reporting dependency -->
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-html</artifactId>
-      <version>0.2.7</version>
-    </dependency>
-    <dependency>
-      <groupId>net.masterthought</groupId>
-      <artifactId>cucumber-sandwich</artifactId>
-      <version>5.7.5</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>io.cucumber</groupId>-->
+<!--      <artifactId>cucumber-html</artifactId>-->
+<!--      <version>0.2.7</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>net.masterthought</groupId>-->
+<!--      <artifactId>cucumber-sandwich</artifactId>-->
+<!--      <version>5.7.5</version>-->
+<!--    </dependency>-->
 
     <!-- Lombok -->
     <dependency>

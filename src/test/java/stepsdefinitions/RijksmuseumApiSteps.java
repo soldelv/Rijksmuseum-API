@@ -113,7 +113,17 @@ public class RijksmuseumApiSteps {
 
     @And("the response should contain an error message {}")
     public void theResponseShouldContainAnErrorMessageInvalidKey(String message) throws IOException {
-        System.out.println("Error message: " + errorBody.string());
-        Assert.assertTrue("Error message doesn't match", errorBody.string().contains(message));
+        String actualMessage = errorBody.string();
+        System.out.println("Error message: " + actualMessage);
+        Assert.assertEquals("Error message doesn't match", message, actualMessage);
+    }
+
+    @Given("GET the collection details from the collection with invalid API key")
+    public void getTheCollectionDetailsFromTheCollectionWithInvalidAPIKey() {
+        collectionDetailResponse = api.getCollectionDetailsWithInvalidApiKey(objectNumber);
+        Assert.assertNotNull("Collection detail response is null", collectionDetailResponse);
+        System.out.println("collectionDetailResponse: " + collectionDetailResponse.body());
+        statusCode = collectionDetailResponse.code();
+        errorBody = api.getErrorBody(collectionDetailResponse);
     }
 }
