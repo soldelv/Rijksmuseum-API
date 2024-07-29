@@ -27,13 +27,13 @@ jobs:
         run: mvn clean install
 
       - name: Run tests
-        run: mvn test
+        run: mvn clean test
 
       - name: Upload Cucumber reports
         uses: actions/upload-artifact@v4
         with:
-          name: cucumber-reports
-          path: target/cucumber-reports
+          name: cucumber-html-report
+          path: target/cucumber-reports/cucumber.html
 
       - name: Run JaCoCo code coverage
         run: mvn jacoco:report
