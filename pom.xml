@@ -1,0 +1,292 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.example</groupId>
+  <artifactId>Rijksmuseum-API</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>Rijksmuseum-API</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <default.branch>main</default.branch>
+    <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+    <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
+    <maven.compiler.source.version>17</maven.compiler.source.version>
+    <maven.compiler.target.version>17</maven.compiler.target.version>
+    <dataproviderthreadcount.value>3</dataproviderthreadcount.value>
+    <cucumber.java.version>5.7.0</cucumber.java.version>
+    <cucumber.version>7.2.0</cucumber.version>
+    <selenium.version>4.1.2</selenium.version>
+    <webdrivermanager.version>4.4.3</webdrivermanager.version>
+    <jacoco.skip.instrument>false</jacoco.skip.instrument>
+    <jacoco.version>0.7.5.201505241946</jacoco.version>
+    <mockito.version>2.28.2</mockito.version>
+    <oracle.version>11.2.0.3</oracle.version>
+    <retrofit2.version>2.9.0</retrofit2.version>
+    <faker.version>1.0.2</faker.version>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.plugin.version}</version>
+        <configuration>
+          <source>${maven.compiler.source.version}</source>
+          <target>${maven.compiler.target.version}</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven.surefire.plugin.version}</version>
+
+        <configuration>
+          <skipTests>false</skipTests>
+          <properties>
+            <property>
+              <name>dataproviderthreadcount</name>
+              <value>${dataproviderthreadcount.value}</value>
+            </property>
+          </properties>
+          <testFailureIgnore>true</testFailureIgnore>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+
+    <!--  Cucumber  -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <scope>test</scope>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-jvm</artifactId>
+      <type>pom</type>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-core</artifactId>
+      <scope>compile</scope>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>1.2.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-csv</artifactId>
+      <version>1.5</version>
+    </dependency>
+
+    <!-- JUnit -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.9.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <scope>test</scope>
+      <version>7.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>gherkin</artifactId>
+      <version>5.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>gherkin-jvm-deps</artifactId>
+      <version>1.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-junit-platform-engine</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-console</artifactId>
+      <version>1.8.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-suite</artifactId>
+      <version>1.8.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-commons</artifactId>
+      <version>1.7.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit</groupId>
+      <artifactId>junit-bom</artifactId>
+      <version>5.7.0-M1</version>
+      <type>pom</type>
+    </dependency>
+
+    <!-- Other dependencies -->
+    <dependency>
+      <groupId>net.bytebuddy</groupId>
+      <artifactId>byte-buddy</artifactId>
+      <version>1.9.12</version>
+    </dependency>
+    <dependency>
+      <groupId>net.bytebuddy</groupId>
+      <artifactId>byte-buddy-agent</artifactId>
+      <version>1.9.15</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars.bower</groupId>
+      <artifactId>js-url</artifactId>
+      <version>2.6.3</version>
+    </dependency>
+
+    <!-- Dependencies for Cucumber JVM Report -->
+    <!-- Jacoco -->
+    <dependency>
+      <groupId>org.jacoco</groupId>
+      <artifactId>org.jacoco.agent</artifactId>
+      <scope>test</scope>
+      <version>0.8.8</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jacoco</groupId>
+      <artifactId>jacoco-maven-plugin</artifactId>
+      <version>0.8.8</version>
+    </dependency>
+
+    <!-- Cucumber reporting dependency -->
+    <dependency>
+      <groupId>net.masterthought</groupId>
+      <artifactId>cucumber-reporting</artifactId>
+      <version>5.7.5</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Cucumber reporting dependency -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-html</artifactId>
+      <version>0.2.7</version>
+    </dependency>
+    <dependency>
+      <groupId>net.masterthought</groupId>
+      <artifactId>cucumber-sandwich</artifactId>
+      <version>5.7.5</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.http-client</groupId>
+      <artifactId>google-http-client-apache</artifactId>
+      <version>2.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars.npm</groupId>
+      <artifactId>swipebox-10quality</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+
+    <!-- Gson -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.6</version>
+    </dependency>
+
+    <!-- Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.28</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Retrofit -->
+    <dependency>
+      <groupId>com.squareup.retrofit2</groupId>
+      <artifactId>retrofit</artifactId>
+      <version>${retrofit2.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.squareup.retrofit2</groupId>
+      <artifactId>converter-gson</artifactId>
+      <version>${retrofit2.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.squareup.retrofit2</groupId>
+      <artifactId>converter-jackson</artifactId>
+      <version>${retrofit2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.javafaker</groupId>
+      <artifactId>javafaker</artifactId>
+      <version>${faker.version}</version>
+    </dependency>
+
+    <!-- Okio -->
+    <dependency>
+      <groupId>com.squareup.okio</groupId>
+      <artifactId>okio</artifactId>
+      <version>2.8.0</version>
+    </dependency>
+
+    <!-- Git -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-exec</artifactId>
+      <version>1.3</version>
+    </dependency>
+
+    <!-- OkHttp -->
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>4.9.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>logging-interceptor</artifactId>
+      <version>4.9.0</version>
+    </dependency>
+  </dependencies>
+</project>
