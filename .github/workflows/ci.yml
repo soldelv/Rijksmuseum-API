@@ -43,8 +43,21 @@ jobs:
       - name: Prepare reports for GitHub Pages
         run: |
           mkdir -p reports
+          # Copy report files to reports directory
           cp -r target/cucumber-reports/cucumber-html-reports/* reports/
+          # Create the index.html file for redirection
+          echo '<!DOCTYPE html>
+          <html>
+            <head>
+              <meta http-equiv="refresh" content="0; url=overview-features.html">
+              <title>Redirecting...</title>
+            </head>
+            <body>
+              <p>If you are not redirected automatically, follow this <a href="overview-features.html">link</a>.</p>
+            </body>
+          </html>' > reports/index.html
           cd reports
+          # Initialize a new git repository and fetch the gh-pages branch
           git init
           git remote add origin https://${{ secrets.USERNAME }}:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}.git
           git fetch origin gh-pages
