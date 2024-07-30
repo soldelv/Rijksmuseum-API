@@ -1,5 +1,5 @@
 # .github/workflows/ci.yml
-name: Java CI with Maven
+name: Github Actions Pipeline
 
 on:
   push:
@@ -35,12 +35,21 @@ jobs:
           name: cucumber-html-report
           path: target/cucumber-reports/cucumber-html-reports/**
 
-      - name: Run JaCoCo code coverage
-        run: mvn jacoco:report
+      - name: Prepare reports for GitHub Pages
+        run: |
+          mkdir -p reports
+          cp -r target/cucumber-reports/cucumber-html-reports/* reports/
+          cp -r target/site/jacoco/* reports/
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git checkout -b gh-pages
+          cp -r reports/* .
+          git add .
+          git commit -m "Deploy reports to GitHub Pages"
+          git push origin gh-pages --force
 
-      - name: Upload code coverage report
-        uses: actions/upload-artifact@v4
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: coverage-report
-          path: target/site/jacoco
-
+          deploy_key: ${{ secrets.GITHUB_DEPLOY_KEY }}
+          publish_dir: ./reports
