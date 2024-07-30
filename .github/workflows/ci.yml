@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-html-report
-          path: target/cucumber-reports/cucumber-html-reports/overview-features.html
+          path: target/cucumber-reports/cucumber-html-reports/**
 
       - name: Run JaCoCo code coverage
         run: mvn jacoco:report
@@ -43,3 +43,4 @@ jobs:
         with:
           name: coverage-report
           path: target/site/jacoco
+
