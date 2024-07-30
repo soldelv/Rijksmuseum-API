@@ -35,6 +35,11 @@ jobs:
           name: cucumber-html-report
           path: target/cucumber-reports/cucumber-html-reports/**
 
+      - name: Set up Git user
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+
       - name: Prepare reports for GitHub Pages
         run: |
           mkdir -p reports
